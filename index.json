@@ -86,10 +86,6 @@
 			],
 			"auto_route": true,
 			"strict_route": true,
-			"include_android_user": [
-				0,
-				999
-			],
 			"platform": {
 				"http_proxy": {
 					"enabled": true,
