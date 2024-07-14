@@ -19,6 +19,12 @@
 				"detour": "OpenAI"
 			},
 			{
+				"tag": "cloudflare_Google",
+				"address": "tcp://1.1.1.1",
+				"strategy": "ipv4_only",
+				"detour": "Google"
+			},
+			{
 				"tag": "local",
 				"address": "udp://223.5.5.5",
 				"detour": "direct"
@@ -62,6 +68,10 @@
 			{
 				"rule_set": "geosite-openai",
 				"server": "cloudflare_OpenAI"
+			},
+			{
+				"rule_set": "Google",
+				"server": "cloudflare_Google"
 			},
 			{
 				"clash_mode": "Default",
@@ -125,6 +135,13 @@
 			]
 		},
 		{
+			"type": "selector",
+			"tag": "Google",
+			"outbounds": [
+				"select"
+			]
+		},
+		{
 			"type": "direct",
 			"tag": "direct"
 		},
@@ -170,6 +187,10 @@
 				"outbound": "OpenAI"
 			},
 			{
+				"rule_set": "Google",
+				"outbound": "Google"
+			},
+			{
 				"clash_mode": "Default",
 				"outbound": "select"
 			}
@@ -204,12 +225,45 @@
 				"download_detour": "direct"
 			},
 			{
+				"type": "remote",
+				"tag": "geosite-google",
+				"format": "binary",
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google.srs",
+				"download_detour": "direct"
+			},
+			{
+				"type": "remote",
+				"tag": "geosite-google@cn",
+				"format": "binary",
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google@cn.srs",
+				"download_detour": "direct"
+			},
+			{
 				"type": "inline",
 				"tag": "审计",
 				"rules": [
 					{
 						"domain_regex": [
-							"(.*.||)(dafahao|minghui|dongtaiwang|epochtimes|ntdtv|falundafa|wujieliulan|voachinese).(org|com|net)"
+							"(.*.||)(dafahao|minghui|dongtaiwang|epochtimes|ntdtv|falundafa|wujieliulan).(org|com|net)"
+						]
+					}
+				]
+			},
+			{
+				"type": "inline",
+				"tag": "Google",
+				"rules": [
+					{
+						"type": "logical",
+						"mode": "and",
+						"rules": [
+							{
+								"rule_set": "geosite-google@cn",
+								"invert": true
+							},
+							{
+								"rule_set": "geosite-google"
+							}
 						]
 					}
 				]
