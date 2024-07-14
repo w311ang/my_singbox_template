@@ -29,12 +29,7 @@ dns:
       server: cloudflare_审计
     - rule_set: geosite-openai
       server: cloudflare_OpenAI
-    - type: logical
-      mode: and
-      rules:
-        - rule_set: geosite-google@cn
-          invert: true
-        - rule_set: geosite-google
+    - rule_set: Google
       server: cloudflare_Google
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
@@ -124,12 +119,7 @@ route:
       outbound: 审计
     - rule_set: geosite-openai
       outbound: OpenAI
-    - type: logical
-      mode: and
-      rules:
-        - rule_set: geosite-google@cn
-          invert: true
-        - rule_set: geosite-google
+    - rule_set: Google
       outbound: Google
     - rule_set:
         - geosite-geolocation-!cn
@@ -176,6 +166,12 @@ route:
       rules:
         - domain_regex:
             - (.*.||)(dafahao|minghui|dongtaiwang|epochtimes|ntdtv|falundafa|wujieliulan|voachinese).(org|com|net)
+    - type: inline
+      tag: Google
+      rules:
+        - domain:
+            - www.google.com
+            - google.com
   auto_detect_interface: true
 experimental:
   cache_file:
