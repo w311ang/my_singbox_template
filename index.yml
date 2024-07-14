@@ -117,6 +117,15 @@ route:
             - geosite-geolocation-cn
           invert: true
       outbound: block
+    - type: logical
+      mode: and
+      rules:
+        - rule_set:
+           - geoip-cn
+           - geosite-geolocation-cn
+          invert: true
+        - protocol: UDP
+      outbound: UDP
     - rule_set: 审计
       outbound: 审计
     - rule_set: geosite-openai
