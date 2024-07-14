@@ -81,6 +81,10 @@ outbounds:
     tag: Google
     outbounds:
       - select
+  - type: selector
+    tag: UDP
+    outbounds:
+      - select
   - type: direct
     tag: direct
   - type: block
