@@ -185,7 +185,7 @@
 						"port": 53
 					}
 				],
-				"outbound": "dns"
+				"outbound": "dns-out"
 			},
 			{
 				"ip_is_private": true,
