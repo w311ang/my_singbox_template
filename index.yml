@@ -25,15 +25,6 @@ dns:
       server: local
     - clash_mode: Global
       server: cloudflare
-    - rule_set: geosite-geolocation-cn
-      server: local
-    - type: logical
-      mode: and
-      rules:
-        - rule_set: geosite-geolocation-!cn
-          invert: true
-        - rule_set: geoip-cn
-      server: local
     - rule_set: 审计
       server: cloudflare_审计
     - rule_set: geosite-openai
@@ -45,6 +36,12 @@ dns:
           invert: true
         - rule_set: geosite-google
       server: cloudflare_Google
+    - rule_set: geosite-geolocation-!cn
+      server: cloudflare
+    - rule_set: 
+        - geosite-geolocation-cn
+        - geoip-cn
+      server: local
     - clash_mode: Default
       server: cloudflare
   independent_cache: true
