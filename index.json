@@ -70,7 +70,21 @@
 				"server": "cloudflare_OpenAI"
 			},
 			{
-				"rule_set": "Google",
+				"rules": [
+					{
+						"type": "logical",
+						"mode": "and",
+						"rules": [
+							{
+								"rule_set": "geosite-google@cn",
+								"invert": true
+							},
+							{
+								"rule_set": "geosite-google"
+							}
+						]
+					}
+				],
 				"server": "cloudflare_Google"
 			},
 			{
@@ -187,7 +201,21 @@
 				"outbound": "OpenAI"
 			},
 			{
-				"rule_set": "Google",
+				"rules": [
+					{
+						"type": "logical",
+						"mode": "and",
+						"rules": [
+							{
+								"rule_set": "geosite-google@cn",
+								"invert": true
+							},
+							{
+								"rule_set": "geosite-google"
+							}
+						]
+					}
+				],
 				"outbound": "Google"
 			},
 			{
@@ -245,25 +273,6 @@
 					{
 						"domain_regex": [
 							"(.*.||)(dafahao|minghui|dongtaiwang|epochtimes|ntdtv|falundafa|wujieliulan|voachinese).(org|com|net)"
-						]
-					}
-				]
-			},
-			{
-				"type": "inline",
-				"tag": "Google",
-				"rules": [
-					{
-						"type": "logical",
-						"mode": "and",
-						"rules": [
-							{
-								"rule_set": "geosite-google@cn",
-								"invert": true
-							},
-							{
-								"rule_set": "geosite-google"
-							}
 						]
 					}
 				]
