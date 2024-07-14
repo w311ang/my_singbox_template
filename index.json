@@ -67,7 +67,8 @@
 				"clash_mode": "Default",
 				"server": "cloudflare"
 			}
-		]
+		],
+		"independent_cache": true
 	},
 	"inbounds": [
 		{
@@ -213,7 +214,8 @@
 					}
 				]
 			}
-		]
+		],
+		"auto_detect_interface": true
 	},
 	"experimental": {
 		"cache_file": {
