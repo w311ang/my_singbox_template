@@ -175,17 +175,51 @@
 				"outbound": "select"
 			},
 			{
-				"protocol": "dns",
-				"outbound": "dns-out"
+				"type": "logical",
+				"mode": "or",
+				"rules": [
+					{
+						"protocol": "dns"
+					},
+					{
+						"port": 53
+					}
+				],
+				"outbound": "dns"
 			},
 			{
-				"geoip": [
-					"private"
-				],
+				"ip_is_private": true,
 				"outbound": "direct"
 			},
 			{
-				"protocol": "quic",
+				"type": "logical",
+				"mode": "and",
+				"rules": [
+					{
+						"type": "logical",
+						"mode": "or",
+						"rules": [
+							{
+								"network": "udp",
+								"port": 443
+							},
+							{
+								"network": "udp",
+								"port": 80
+							},
+							{
+								"protocol": "quic"
+							}
+						]
+					},
+					{
+						"rule_set": [
+							"geoip-cn",
+							"geosite-geolocation-cn"
+						],
+						"invert": true
+					}
+				],
 				"outbound": "block"
 			},
 			{
@@ -209,6 +243,13 @@
 					}
 				],
 				"outbound": "Google"
+			},
+			{
+				"rule_set": [
+					"geoip-cn",
+					"geosite-geolocation-cn"
+				],
+				"outbound": "direct"
 			},
 			{
 				"clash_mode": "Default",
