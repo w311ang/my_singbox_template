@@ -128,7 +128,7 @@ route:
            - geoip-cn
            - geosite-geolocation-cn
           invert: true
-        - protocol: UDP
+        - network: udp
       outbound: UDP
     - rule_set: 审计
       outbound: 审计
