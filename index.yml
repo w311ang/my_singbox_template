@@ -145,6 +145,8 @@ route:
       outbound: direct
     - clash_mode: Default
       outbound: select
+    - process_name: [] #用以启用在ui中显示进程
+      outbound: select
   rule_set:
     - type: remote
       tag: geosite-geolocation-cn
