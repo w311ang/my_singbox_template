@@ -132,6 +132,9 @@ route:
         - rule_set: geosite-google
       outbound: Google
     - rule_set:
+        - geosite-geolocation-!cn
+      outbound: select
+    - rule_set:
         - geoip-cn
         - geosite-geolocation-cn
       outbound: direct
