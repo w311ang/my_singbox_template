@@ -129,7 +129,7 @@ route:
     - type: logical
       mode: and
       rules:
-        - type: logical #像是clientservices.googleapis.com既属于geosite-geolocation-!cn又属于geosite-geolocation-cn的处理
+        - type: logical
           mode: or
           rules:
             - rule_set:
