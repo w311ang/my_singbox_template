@@ -105,20 +105,6 @@ route:
       outbound: dns-out
     - ip_is_private: true
       outbound: direct
-    - type: logical #像是clientservices.googleapis.com既属于geosite-geolocation-!cn又属于geosite-geolocation-cn处理
-      mode: and
-      rules:
-        - type: logical
-          mode: or
-          rules:
-            - network: udp
-              port: 443
-            - network: udp
-              port: 80
-            - protocol: quic
-        - rule_set:
-            - geosite-geolocation-!cn
-      outbound: block
     - type: logical
       mode: and
       rules:
@@ -130,18 +116,28 @@ route:
             - network: udp
               port: 80
             - protocol: quic
-        - rule_set:
-            - geoip-cn
-            - geosite-geolocation-cn
-          invert: true
+        - type: logical #像是clientservices.googleapis.com既属于geosite-geolocation-!cn又属于geosite-geolocation-cn的处理
+          mode: or
+          rules:
+            - rule_set:
+                - geosite-geolocation-!cn
+            - rule_set:
+                - geoip-cn
+                - geosite-geolocation-cn
+              invert: true
       outbound: block
     - type: logical
       mode: and
       rules:
-        - rule_set:
-           - geoip-cn
-           - geosite-geolocation-cn
-          invert: true
+        - type: logical #像是clientservices.googleapis.com既属于geosite-geolocation-!cn又属于geosite-geolocation-cn的处理
+          mode: or
+          rules:
+            - rule_set:
+                - geosite-geolocation-!cn
+            - rule_set:
+                - geoip-cn
+                - geosite-geolocation-cn
+              invert: true
         - network: udp
       outbound: UDP
     - rule_set: 审计
