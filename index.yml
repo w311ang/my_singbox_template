@@ -57,7 +57,7 @@ inbounds:
     strict_route: true
     platform:
       http_proxy:
-        enabled: true
+        enabled: false #mixed域名入站不解析域名直接通过域名分流，导致geoip规则失效
         server: ::1
         server_port: 1080
     sniff: true
