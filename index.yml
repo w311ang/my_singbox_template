@@ -105,6 +105,20 @@ route:
       outbound: dns-out
     - ip_is_private: true
       outbound: direct
+    - type: logical #像是clientservices.googleapis.com既属于geosite-geolocation-!cn又属于geosite-geolocation-cn处理
+      mode: and
+      rules:
+        - type: logical
+          mode: or
+          rules:
+            - network: udp
+              port: 443
+            - network: udp
+              port: 80
+            - protocol: quic
+        - rule_set:
+            - geosite-geolocation-!cn
+      outbound: block
     - type: logical
       mode: and
       rules:
