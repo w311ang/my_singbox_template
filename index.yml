@@ -112,9 +112,9 @@ route:
           mode: or
           rules:
             - network: udp
-              port: 443
-            - network: udp
-              port: 80
+              port: 
+                - 443
+                - 80
             - protocol: quic
         - type: logical #像是clientservices.googleapis.com既属于geosite-geolocation-!cn又属于geosite-geolocation-cn的处理
           mode: or
