@@ -18,7 +18,7 @@ dns:
       strategy: ipv4_only
       detour: Google
     - tag: local
-      address: udp://223.5.5.5
+      address: local
       detour: direct
   rules:
     - outbound: any
@@ -27,6 +27,10 @@ dns:
       server: local
     - clash_mode: Global
       server: cloudflare
+    - domain_suffix:
+        - .lan
+        - .local
+      server: local
     - rule_set: 审计
       server: cloudflare_审计
     - rule_set: geosite-openai
