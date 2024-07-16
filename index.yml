@@ -18,7 +18,7 @@ dns:
       strategy: ipv4_only
       detour: Google
     - tag: local
-      address: dhcp://auto
+      address: local
       detour: direct
   rules:
     - outbound: any
