@@ -73,6 +73,7 @@ outbounds:
     tag: select
     outbounds:
       - auto
+    interrupt_exist_connections: true
   - type: urltest
     tag: auto
     outbounds: []
@@ -80,18 +81,22 @@ outbounds:
     tag: 审计
     outbounds:
       - select
+    interrupt_exist_connections: true
   - type: selector
     tag: OpenAI
     outbounds:
       - select
+    interrupt_exist_connections: true
   - type: selector
     tag: Google
     outbounds:
       - select
+    interrupt_exist_connections: true
   - type: selector
     tag: UDP
     outbounds:
       - select
+    interrupt_exist_connections: true
   - type: direct
     tag: direct
   - type: block
