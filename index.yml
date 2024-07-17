@@ -48,6 +48,7 @@ dns:
     - clash_mode: Default
       server: cloudflare
   independent_cache: true
+  reverse_mapping: true #解决只靠嗅探udp嗅探不出域名而只用ip分流的问题
 inbounds:
   - type: mixed
     tag: mixed-in
