@@ -43,7 +43,11 @@ dns:
       server: cloudflare_OpenAI
     - rule_set: Google
       server: cloudflare_Google
-    - rule_set: geosite-tiktok
+    - type: logical
+      mode: or
+      rules:
+        - package_name: com.zhiliaoapp.musically
+        - rule_set: geosite-tiktok
       server: cloudflare_TikTok
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
@@ -171,7 +175,11 @@ route:
       outbound: OpenAI
     - rule_set: Google
       outbound: Google
-    - rule_set: geosite-tiktok
+    - type: logical
+      mode: or
+      rules:
+        - package_name: com.zhiliaoapp.musically
+        - rule_set: geosite-tiktok
       outbound: TikTok
     - rule_set:
         - geosite-geolocation-!cn
