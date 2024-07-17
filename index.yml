@@ -17,10 +17,10 @@ dns:
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: Google
-    - tag: cloudflare_Tiktok
+    - tag: cloudflare_TikTok
       address: tcp://1.1.1.1
       strategy: ipv4_only
-      detour: Tiktok
+      detour: TikTok
     - tag: local
       address: udp://223.5.5.5 #最好是dhcp://auto
       detour: direct
@@ -44,7 +44,7 @@ dns:
     - rule_set: Google
       server: cloudflare_Google
     - rule_set: geosite-tiktok
-      server: cloudflare_Tiktok
+      server: cloudflare_TikTok
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
     - rule_set: 
@@ -104,7 +104,7 @@ outbounds:
       - select
     interrupt_exist_connections: true
   - type: selector
-    tag: Tiktok
+    tag: TikTok
     outbounds:
       - select
     interrupt_exist_connections: true
@@ -172,7 +172,7 @@ route:
     - rule_set: Google
       outbound: Google
     - rule_set: geosite-tiktok
-      outbound: Tiktok
+      outbound: TikTok
     - rule_set:
         - geosite-geolocation-!cn
       outbound: select
