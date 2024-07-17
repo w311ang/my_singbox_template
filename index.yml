@@ -17,6 +17,10 @@ dns:
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: Google
+    - tag: cloudflare_Tiktok
+      address: tcp://1.1.1.1
+      strategy: ipv4_only
+      detour: Tiktok
     - tag: local
       address: udp://223.5.5.5 #最好是dhcp://auto
       detour: direct
@@ -39,6 +43,8 @@ dns:
       server: cloudflare_OpenAI
     - rule_set: Google
       server: cloudflare_Google
+    - rule_set: geosite-tiktok
+      server: cloudflare_Tiktok
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
     - rule_set: 
@@ -94,6 +100,11 @@ outbounds:
     interrupt_exist_connections: true
   - type: selector
     tag: UDP
+    outbounds:
+      - select
+    interrupt_exist_connections: true
+  - type: selector
+    tag: Tiktok
     outbounds:
       - select
     interrupt_exist_connections: true
@@ -160,6 +171,8 @@ route:
       outbound: OpenAI
     - rule_set: Google
       outbound: Google
+    - rule_set: geosite-tiktok
+      outbound: Tiktok
     - rule_set:
         - geosite-geolocation-!cn
       outbound: select
@@ -214,6 +227,11 @@ route:
         - domain:
             - www.google.com
             - google.com
+    - type: remote
+      tag: geosite-tiktok
+      format: binary
+      url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-tiktok.srs
+      download_detour: direct
   auto_detect_interface: true
 experimental:
   cache_file:
