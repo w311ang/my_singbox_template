@@ -21,6 +21,10 @@ dns:
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: TikTok
+    - tag: cloudflare_YouTube
+      address: tcp://1.1.1.1
+      strategy: ipv4_only
+      detour: YouTube
     - tag: local
       address: udp://223.5.5.5 #最好是dhcp://auto
       detour: direct
@@ -49,6 +53,8 @@ dns:
         - package_name: com.zhiliaoapp.musically
         - rule_set: geosite-tiktok
       server: cloudflare_TikTok
+    - rule_set: geosite-youtube
+      server: cloudflare_YouTube
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
     - rule_set: 
@@ -109,6 +115,11 @@ outbounds:
     interrupt_exist_connections: true
   - type: selector
     tag: TikTok
+    outbounds:
+      - select
+    interrupt_exist_connections: true
+  - type: selector
+    tag: YouTube
     outbounds:
       - select
     interrupt_exist_connections: true
@@ -181,6 +192,8 @@ route:
         - package_name: com.zhiliaoapp.musically
         - rule_set: geosite-tiktok
       outbound: TikTok
+    - rule_set: geosite-youtube
+      outbound: YouTube
     - rule_set:
         - geosite-geolocation-!cn
       outbound: select
@@ -239,6 +252,11 @@ route:
       tag: geosite-tiktok
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-tiktok.srs
+      download_detour: direct
+    - type: remote
+      tag: geosite-youtube
+      format: binary
+      url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-youtube.srs
       download_detour: direct
   auto_detect_interface: true
 experimental:
