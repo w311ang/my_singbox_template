@@ -228,7 +228,7 @@ route:
       tag: 审计
       rules:
         - domain_regex:
-            - (.*.||)(dafahao|minghui|dongtaiwang|epochtimes|ntdtv|falundafa|wujieliulan|voachinese).(org|com|net)
+            - (.*.||)(dafahao|minghui|dongtaiwang|epochtimes|ntdtv|falundafa|wujieliulan|voachinese|tuidang).(org|com|net)
     - type: inline
       tag: Google
       rules:
