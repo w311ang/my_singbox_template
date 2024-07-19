@@ -25,6 +25,10 @@ dns:
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: YouTube
+    - tag: cloudflare_Wikipedia
+      address: tcp://1.1.1.1
+      strategy: ipv4_only
+      detour: Wikipedia
     - tag: local
       address: udp://223.5.5.5 #最好是dhcp://auto
       detour: direct
@@ -55,6 +59,8 @@ dns:
       server: cloudflare_TikTok
     - rule_set: geosite-youtube
       server: cloudflare_YouTube
+    - rule_set: geosite-wikimedia
+      server: cloudflare_Wikipedia
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
     - rule_set: 
@@ -120,6 +126,11 @@ outbounds:
     interrupt_exist_connections: true
   - type: selector
     tag: YouTube
+    outbounds:
+      - select
+    interrupt_exist_connections: true
+  - type: selector
+    tag: Wikipedia
     outbounds:
       - select
     interrupt_exist_connections: true
@@ -194,6 +205,8 @@ route:
       outbound: TikTok
     - rule_set: geosite-youtube
       outbound: YouTube
+    - rule_set: geosite-wikimedia
+      outbound: Wikipedia
     - rule_set:
         - geosite-geolocation-!cn
       outbound: select
@@ -257,6 +270,11 @@ route:
       tag: geosite-youtube
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-youtube.srs
+      download_detour: direct
+    - type: remote
+      tag: geosite-wikimedia
+      format: binary
+      url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-wikimedia.srs
       download_detour: direct
   auto_detect_interface: true
 experimental:
