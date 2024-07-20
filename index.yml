@@ -76,7 +76,7 @@ dns:
 inbounds:
   - type: mixed
     tag: mixed-in
-    listen: ::1
+    listen: 127.0.0.1
     listen_port: 1080
     sniff: true
   - type: tun
@@ -89,12 +89,12 @@ inbounds:
     platform:
       http_proxy:
         enabled: false #mixed域名入站不解析域名直接通过域名分流，导致geoip规则失效
-        server: ::1
+        server: 127.0.0.1
         server_port: 1080
     sniff: true
   - type: mixed
     tag: 审计checker-in
-    listen: ::1
+    listen: 127.0.0.1
     listen_port: 1081
     sniff: true
 outbounds:
