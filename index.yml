@@ -269,11 +269,6 @@ route:
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google@cn.srs
       download_detour: direct
     - type: inline
-      tag: 审计
-      rules:
-        - domain_regex:
-            - (.*.||)(dafahao|minghui|dongtaiwang|epochtimes|ntdtv|falundafa|wujieliulan|voachinese|tuidang).(org|com|net)
-    - type: inline
       tag: Google
       rules:
         - domain:
