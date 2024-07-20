@@ -1,5 +1,8 @@
 name: Build binary rule-set
-on: [pull_request, pull_request_target, push]
+on:
+  push:
+    paths:
+      - geosite-audit.yml
 
 jobs:
   build:
