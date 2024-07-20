@@ -39,6 +39,8 @@ dns:
       server: local
     - inbound: 审计checker-in
       server: cloudflare
+    - inbound: 审计checker_无审计-in
+      server: cloudflare_审计
     - clash_mode: Direct
       server: local
     - clash_mode: Global
@@ -97,6 +99,11 @@ inbounds:
     listen: 127.0.0.1
     listen_port: 1081
     sniff: true
+  - type: mixed
+    tag: 审计checker_无审计-in
+    listen: 127.0.0.1
+    listen_port: 1082
+    sniff: true
 outbounds:
   - type: selector
     tag: select
@@ -151,6 +158,8 @@ route:
   rules:
     - inbound: 审计checker-in
       outbound: select
+    - inbound: 审计checker_无审计-in
+      outbound: 审计
     - clash_mode: Direct
       outbound: direct
     - clash_mode: Global
