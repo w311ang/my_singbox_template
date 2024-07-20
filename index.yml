@@ -292,7 +292,7 @@ route:
     - type: remote
       tag: geosite-audit
       format: binary
-      url: https://raw.githubusercontent.com/w311ang/my_singbox_template/geosite-audit.srs
+      url: https://raw.githubusercontent.com/w311ang/my_singbox_template/main/geosite-audit.srs
       download_detour: direct
   auto_detect_interface: true
 experimental:
