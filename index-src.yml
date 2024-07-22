@@ -282,11 +282,6 @@ route:
       format: binary
       url: https://raw.githubusercontent.com/w311ang/my_singbox_template/main/geosite-audit.srs
       download_detour: direct
-    - type: remote
-      tag: private-exclude_router
-      format: binary
-      url: https://raw.githubusercontent.com/w311ang/my_singbox_template/main/private-exclude_router.srs
-      download_detour: direct
   auto_detect_interface: true
 experimental:
   cache_file:
