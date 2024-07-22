@@ -5,6 +5,7 @@ on:
       - .github/workflows/build.yml
       - geosite-audit.yml
       - private-exclude_router.yml
+      - index-src.yml
   workflow_dispatch:
 
 jobs:
