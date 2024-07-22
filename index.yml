@@ -76,6 +76,22 @@ dns:
   independent_cache: true
   reverse_mapping: true #解决只靠嗅探udp嗅探不出域名而只用ip分流的问题
 inbounds:
+  - type: mixed
+    tag: mixed-in
+    listen: 127.0.0.1
+    listen_port: 1080
+    sniff: true
+  #tun在inbounds-tun.yml中
+  - type: mixed
+    tag: 审计checker-in
+    listen: 127.0.0.1
+    listen_port: 1081
+    sniff: true
+  - type: mixed
+    tag: 审计checker_无审计-in
+    listen: 127.0.0.1
+    listen_port: 1082
+    sniff: true
   - type: tun
     tag: tun-in
     address:
