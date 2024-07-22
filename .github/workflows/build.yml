@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - geosite-audit.yml
+      - private-exclude_router.yml
 
 jobs:
   build:
@@ -18,8 +19,10 @@ jobs:
         wget https://github.com/SagerNet/sing-box/releases/download/v1.10.0-alpha.22/sing-box_1.10.0-alpha.22_linux_amd64.deb
         sudo dpkg -i sing-box_1.10.0-alpha.22_linux_amd64.deb
         cd -
-        yq -o=json geosite-audit.yml > geosite-audit.json
-        sing-box rule-set compile geosite-audit.json
+        for filename in geosite-audit private-exclude_router; do
+          yq -o=json $filename.yml > $filename.json
+          sing-box rule-set compile $filename.json
+        done
     - name: Commit files
       run: |
         git add .
