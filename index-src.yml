@@ -81,21 +81,7 @@ inbounds:
     listen: 127.0.0.1
     listen_port: 1080
     sniff: true
-  - type: tun
-    tag: tun-in
-    address:
-      - 172.18.0.1/30
-      - fdfe:dcba:9876::1/126
-    auto_route: true
-    strict_route: true
-    route_exclude_address_set:
-      - private-exclude_router #为了让局域网主机还能通过IPv4访问本机0.0.0.0服务器
-    platform:
-      http_proxy:
-        enabled: false #mixed域名入站不解析域名直接通过域名分流，导致geoip规则失效
-        server: 127.0.0.1
-        server_port: 1080
-    sniff: true
+  #tun在inbounds-tun.yml中
   - type: mixed
     tag: 审计checker-in
     listen: 127.0.0.1
