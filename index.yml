@@ -88,6 +88,8 @@ inbounds:
       - fdfe:dcba:9876::1/126
     auto_route: true
     strict_route: true
+    route_exclude_address_set:
+      - private-exclude_router #为了让局域网主机还能通过IPv4访问本机0.0.0.0服务器
     platform:
       http_proxy:
         enabled: false #mixed域名入站不解析域名直接通过域名分流，导致geoip规则失效
@@ -293,6 +295,11 @@ route:
       tag: geosite-audit
       format: binary
       url: https://raw.githubusercontent.com/w311ang/my_singbox_template/main/geosite-audit.srs
+      download_detour: direct
+    - type: remote
+      tag: private-exclude_router
+      format: binary
+      url: https://raw.githubusercontent.com/w311ang/my_singbox_template/main/private-exclude_router.srs
       download_detour: direct
   auto_detect_interface: true
 experimental:
