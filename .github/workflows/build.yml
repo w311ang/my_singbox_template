@@ -1,4 +1,4 @@
-name: Build binary rule-set
+name: Build
 on:
   push:
     paths:
@@ -25,6 +25,7 @@ jobs:
           yq -o=json $filename.yml >$filename.json
           sing-box rule-set compile $filename.json
         done
+        yq m index-src.yml inbounds-tun.yml >index.yml
     - name: Commit files
       run: |
         git add .
