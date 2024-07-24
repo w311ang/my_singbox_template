@@ -188,20 +188,13 @@ route:
     - clash_mode: Direct
       outbound: direct
     - type: logical
-      mode: and
-      rules:
-        - clash_mode: Global
-        - port: 53
-        - network: udp #有些节点没有udp只能由singbox处理
-      outbound: dns-out
-    - clash_mode: Global
-      outbound: select
-    - type: logical
       mode: or
       rules:
         - port: 53
         - protocol: dns
       outbound: dns-out
+    - clash_mode: Global
+      outbound: select
     - ip_is_private: true
       outbound: direct
     - type: logical
