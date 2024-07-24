@@ -5,6 +5,8 @@ dns:
     - tag: cloudflare
       address: tcp://1.1.1.1
       strategy: ipv4_only
+    - tag: cloudflare_Global
+      address: tcp://1.1.1.1
     - tag: cloudflare_审计
       address: tcp://1.1.1.1
       strategy: ipv4_only
@@ -52,7 +54,7 @@ dns:
     - clash_mode: Direct
       server: local
     - clash_mode: Global
-      server: cloudflare
+      server: cloudflare_Global
     - domain_suffix:
         - .lan
         - .local
@@ -187,13 +189,20 @@ route:
       outbound: 审计
     - clash_mode: Direct
       outbound: direct
+    - type: logical
+      mode: and
+      rules:
+        - clash_mode: Global
+        - port: 53
+        - network: udp #有些节点没有udp只能由singbox处理
+      outbound: dns-out
     - clash_mode: Global
       outbound: select
     - type: logical
       mode: or
       rules:
-        - protocol: dns
         - port: 53
+        - protocol: dns
       outbound: dns-out
     - ip_is_private: true
       outbound: direct
