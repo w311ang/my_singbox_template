@@ -5,6 +5,7 @@ dns:
     - tag: cloudflare
       address: tcp://1.1.1.1
       strategy: ipv4_only
+      detour: select
     - tag: cloudflare_审计
       address: tcp://1.1.1.1
       strategy: ipv4_only
