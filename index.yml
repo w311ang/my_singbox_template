@@ -80,7 +80,13 @@ dns:
       server: cloudflare_Wikipedia
     - rule_set: geosite-bahamut
       server: cloudflare_巴哈姆特
-    - rule_set: geosite-amazon
+    - type: logical
+      mode: and
+      rules:
+        - rule_set: geosite-amazon
+        - domain_suffix:
+            - cloudfront.net
+          invert: true
       server: cloudflare_Amazon
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
@@ -257,7 +263,13 @@ route:
       outbound: Wikipedia
     - rule_set: geosite-bahamut
       outbound: 巴哈姆特
-    - rule_set: geosite-amazon
+    - type: logical
+      mode: and
+      rules:
+        - rule_set: geosite-amazon
+        - domain_suffix:
+            - cloudfront.net
+          invert: true
       outbound: Amazon
     - rule_set:
         - geosite-geolocation-!cn
