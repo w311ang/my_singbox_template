@@ -103,7 +103,7 @@ inbounds:
     address:
       - 172.18.0.1/30
       #- fdfe:dcba:9876::1/126 #像是Facebook这种不使用DNS来解析域名的，会以为支持ipv6而硬上，但节点不支持导致连接被关闭
-    autGlo: true
+    auto_route: true
     strict_route: true
     platform:
       http_proxy:
