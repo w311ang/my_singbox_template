@@ -6,6 +6,10 @@ dns:
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: select
+    - tag: cloudflare_Global
+      address: https://1.1.1.1/dns-query
+      strategy: ipv4_only
+      detour: select
     - tag: cloudflare_审计
       address: tcp://1.1.1.1
       strategy: ipv4_only
@@ -53,7 +57,7 @@ dns:
     - clash_mode: Direct
       server: local
     - clash_mode: Global
-      server: cloudflare
+      server: cloudflare_Global
     - domain_suffix:
         - .lan
         - .local
@@ -99,7 +103,7 @@ inbounds:
     address:
       - 172.18.0.1/30
       #- fdfe:dcba:9876::1/126 #像是Facebook这种不使用DNS来解析域名的，会以为支持ipv6而硬上，但节点不支持导致连接被关闭
-    auto_route: true
+    autGlo: true
     strict_route: true
     platform:
       http_proxy:
