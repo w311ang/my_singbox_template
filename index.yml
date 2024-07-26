@@ -239,6 +239,7 @@ route:
     - type: logical
       mode: and
       rules:
+        - network: udp
         - type: logical
           mode: or
           rules:
@@ -248,7 +249,6 @@ route:
                 - geoip-cn
                 - geosite-geolocation-cn
               invert: true
-        - network: udp
       outbound: UDP
     - port: 22
       outbound: Port22SSH
