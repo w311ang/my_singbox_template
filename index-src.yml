@@ -250,7 +250,19 @@ route:
                 - geosite-geolocation-cn
               invert: true
       outbound: UDP
-    - port: 22
+    - type: logical
+      mode: and
+      rules:
+        - port: 22
+        - type: logical
+          mode: or
+          rules:
+            - rule_set:
+                - geosite-geolocation-!cn
+            - rule_set:
+                - geoip-cn
+                - geosite-geolocation-cn
+              invert: true
       outbound: Port22SSH
     - rule_set: geosite-audit
       outbound: 审计
