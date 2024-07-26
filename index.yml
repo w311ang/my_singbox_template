@@ -140,6 +140,13 @@ outbounds:
     tag: auto
     outbounds: []
   - type: selector
+    tag: Port22SSH
+    outbounds:
+      - direct
+      - 审计
+      - select
+    interrupt_exist_connections: true
+  - type: selector
     tag: 审计
     outbounds:
       - select
@@ -243,6 +250,8 @@ route:
               invert: true
         - network: udp
       outbound: UDP
+    - port: 22
+      outbound: Port22SSH
     - rule_set: geosite-audit
       outbound: 审计
     - rule_set: geosite-openai
