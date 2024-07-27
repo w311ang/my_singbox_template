@@ -218,80 +218,100 @@ route:
     - type: logical
       mode: and
       rules:
-        - type: logical
-          mode: or
-          rules:
-            - network: udp
-              port: 
-                - 443
-                - 80
-            - protocol: quic
-        - type: logical #像是clientservices.googleapis.com既属于geosite-geolocation-!cn又属于geosite-geolocation-cn的处理
-          mode: or
-          rules:
-            - rule_set:
-                - geosite-geolocation-!cn
-            - rule_set:
-                - geoip-cn
-                - geosite-geolocation-cn
-              invert: true
-      outbound: block
-    - type: logical
-      mode: and
-      rules:
+        - rule_set: geosite-audit
         - network: udp
-        - type: logical
-          mode: or
-          rules:
-            - rule_set:
-                - geosite-geolocation-!cn
-            - rule_set:
-                - geoip-cn
-                - geosite-geolocation-cn
-              invert: true
-      outbound: UDP
+          invert: true
+        - port: 22
+          invert: true
+      outbound: 审计
     - type: logical
       mode: and
       rules:
+        - rule_set: geosite-openai
+          domain:
+            - cdn.auth0.com
+        - network: udp
+          invert: true
         - port: 22
-        - type: logical
-          mode: or
-          rules:
-            - rule_set:
-                - geosite-geolocation-!cn
-            - rule_set:
-                - geoip-cn
-                - geosite-geolocation-cn
-              invert: true
-      outbound: Port22SSH
-    - rule_set: geosite-audit
-      outbound: 审计
-    - rule_set: geosite-openai
-      domain:
-        - cdn.auth0.com
+          invert: true
       outbound: OpenAI
-    - rule_set: Google
+    - type: logical
+      mode: and
+      rules:
+        - rule_set: Google
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
       outbound: Google
     - type: logical
-      mode: or
+      mode: and
       rules:
-        - package_name: com.zhiliaoapp.musically
-        - rule_set: geosite-tiktok
+        - type: logical
+          mode: or
+          rules:
+            - package_name: com.zhiliaoapp.musically
+            - rule_set: geosite-tiktok
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
       outbound: TikTok
-    - rule_set: geosite-youtube
+    - type: logical
+      mode: and
+      rules:
+        - rule_set: geosite-youtube
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
       outbound: YouTube
-    - rule_set: geosite-wikimedia
+    - type: logical
+      mode: and
+      rules:
+        - rule_set: geosite-wikimedia
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
       outbound: Wikipedia
-    - rule_set: geosite-bahamut
+    - type: logical
+      mode: and
+      rules:
+        - rule_set: geosite-bahamut
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
       outbound: 巴哈姆特
     - type: logical
       mode: and
       rules:
-        - rule_set: geosite-amazon
-        - domain_suffix:
-            - cloudfront.net
+        - type: logical
+          mode: and
+          rules:
+            - rule_set: geosite-amazon
+            - domain_suffix:
+                - cloudfront.net
+              invert: true
+        - network: udp
+          invert: true
+        - port: 22
           invert: true
       outbound: Amazon
+    - type: logical
+      mode: or
+      rules:
+        - network: udp
+          port: 
+            - 443
+            - 80
+        - protocol: quic
+      outbound: block
+    - network: udp
+      outbound: UDP
+    - port: 22
+      outbound: Port22SSH
     - rule_set:
         - geosite-geolocation-!cn
       outbound: select
