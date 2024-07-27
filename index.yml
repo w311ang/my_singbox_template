@@ -218,75 +218,79 @@ route:
     - type: logical
       mode: and
       rules:
-        - rule_set: geosite-audit
         - network: udp
           invert: true
         - port: 22
           invert: true
+        - rule_set: geosite-audit
       outbound: 审计
     - type: logical
       mode: and
       rules:
-        - rule_set: geosite-openai
-          domain:
-            - cdn.auth0.com
         - network: udp
           invert: true
         - port: 22
           invert: true
+        - rule_set: geosite-openai
+          domain:
+            - cdn.auth0.com
       outbound: OpenAI
     - type: logical
       mode: and
       rules:
-        - rule_set: Google
         - network: udp
           invert: true
         - port: 22
           invert: true
+        - rule_set: Google
       outbound: Google
     - type: logical
       mode: and
       rules:
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
         - type: logical
           mode: or
           rules:
             - package_name: com.zhiliaoapp.musically
             - rule_set: geosite-tiktok
-        - network: udp
-          invert: true
-        - port: 22
-          invert: true
       outbound: TikTok
     - type: logical
       mode: and
       rules:
-        - rule_set: geosite-youtube
         - network: udp
           invert: true
         - port: 22
           invert: true
+        - rule_set: geosite-youtube
       outbound: YouTube
     - type: logical
       mode: and
       rules:
-        - rule_set: geosite-wikimedia
         - network: udp
           invert: true
         - port: 22
           invert: true
+        - rule_set: geosite-wikimedia
       outbound: Wikipedia
     - type: logical
       mode: and
       rules:
-        - rule_set: geosite-bahamut
         - network: udp
           invert: true
         - port: 22
           invert: true
+        - rule_set: geosite-bahamut
       outbound: 巴哈姆特
     - type: logical
       mode: and
       rules:
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
         - type: logical
           mode: and
           rules:
@@ -294,20 +298,16 @@ route:
             - domain_suffix:
                 - cloudfront.net
               invert: true
-        - network: udp
-          invert: true
-        - port: 22
-          invert: true
       outbound: Amazon
     - type: logical
       mode: and
       rules:
-        - rule_set:
-            - geosite-geolocation-!cn
         - network: udp
           invert: true
         - port: 22
           invert: true
+        - rule_set:
+            - geosite-geolocation-!cn
       outbound: select
     - type: logical
       mode: and
