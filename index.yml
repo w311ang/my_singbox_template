@@ -300,6 +300,26 @@ route:
           invert: true
       outbound: Amazon
     - type: logical
+      mode: and
+      rules:
+        - rule_set:
+            - geosite-geolocation-!cn
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
+      outbound: select
+    - type: logical
+      mode: and
+      rules:
+        - rule_set:
+            - geoip-cn
+            - geosite-geolocation-cn
+        - rule_set:
+            - geosite-geolocation-!cn
+          invert: true
+      outbound: direct
+    - type: logical
       mode: or
       rules:
         - network: udp
@@ -312,13 +332,6 @@ route:
       outbound: UDP
     - port: 22
       outbound: Port22SSH
-    - rule_set:
-        - geosite-geolocation-!cn
-      outbound: select
-    - rule_set:
-        - geoip-cn
-        - geosite-geolocation-cn
-      outbound: direct
     - clash_mode: Default
       outbound: select
     - process_name: #用以启用在ui中显示进程
