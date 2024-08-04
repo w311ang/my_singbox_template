@@ -384,32 +384,32 @@ route:
       tag: geosite-geolocation-cn
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-cn.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geosite-geolocation-!cn
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geoip-cn
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geosite-openai
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-openai.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geosite-google
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geosite-google@cn
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google@cn.srs
-      download_detour: select
+      download_detour: auto
     - type: inline
       tag: Google
       rules:
@@ -420,32 +420,32 @@ route:
       tag: geosite-tiktok
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-tiktok.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geosite-youtube
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-youtube.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geosite-wikimedia
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-wikimedia.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geosite-audit
       format: binary
       url: https://raw.githubusercontent.com/w311ang/my_singbox_template/main/geosite-audit.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geosite-bahamut
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-bahamut.srs
-      download_detour: select
+      download_detour: auto
     - type: remote
       tag: geosite-amazon
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-amazon.srs
-      download_detour: select
+      download_detour: auto
   auto_detect_interface: true
 experimental:
   cache_file:
