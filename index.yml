@@ -135,6 +135,9 @@ outbounds:
     tag: select
     outbounds:
       - auto
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: urltest
     tag: auto
@@ -145,52 +148,91 @@ outbounds:
       - direct
       - 审计
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: selector
     tag: 审计
     outbounds:
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: selector
     tag: OpenAI
     outbounds:
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: selector
     tag: Google
     outbounds:
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: selector
     tag: UDP
     outbounds:
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: selector
     tag: TikTok
     outbounds:
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: selector
     tag: YouTube
     outbounds:
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: selector
     tag: Wikipedia
     outbounds:
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: selector
     tag: 巴哈姆特
     outbounds:
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
   - type: selector
     tag: Amazon
     outbounds:
       - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
     interrupt_exist_connections: true
+  - type: urltest
+    tag: Hong Kong
+    outbounds-regex: .*香港.*
+  - type: urltest
+    tag: Singapore
+    outbounds-regex: .*新加坡.*
+  - type: urltest
+    tag: Taiwan
+    outbounds-regex: .*台湾.*
   - type: direct
     tag: direct
   - type: block
