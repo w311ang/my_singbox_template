@@ -62,6 +62,8 @@ dns:
         - .lan
         - .local
       server: system
+    - rule_set: Bypass
+      server: local
     - rule_set: geosite-audit
       server: cloudflare_审计
     - rule_set: geosite-openai
@@ -257,6 +259,8 @@ route:
       outbound: select
     - ip_is_private: true
       outbound: direct
+    - rule_set: Bypass
+      outbound: direct
     - type: logical
       mode: and
       rules:
@@ -446,6 +450,11 @@ route:
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-amazon.srs
       download_detour: auto
+    - type: inline
+      tag: Bypass
+      rules:
+        - domain:
+            - shared.oaifree.com
   auto_detect_interface: true
 experimental:
   cache_file:
