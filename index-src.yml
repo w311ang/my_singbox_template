@@ -106,6 +106,7 @@ inbounds:
     listen: 127.0.0.1
     listen_port: 1080
     sniff: true
+    domain_strategy: prefer_ipv6 #避免不解析域名直接通过域名分流，导致geoip规则失效。实际dns解析应还是按照dns解析规则
   - type: tun
     tag: tun-in
     address:
@@ -115,7 +116,7 @@ inbounds:
     strict_route: true
     platform:
       http_proxy:
-        enabled: false #mixed域名入站不解析域名直接通过域名分流，导致geoip规则失效
+        enabled: false #导致chrome访问NXDOMAIN或其他原因不能访问的网站时只是提示PROXY_ERROR掩盖真实错误
         server: 127.0.0.1
         server_port: 1080
     sniff: true
@@ -127,11 +128,13 @@ inbounds:
     listen: 127.0.0.1
     listen_port: 1081
     sniff: true
+    domain_strategy: prefer_ipv6 #仅仅只是为了将域名解析为IP发送给上游节点，模拟TUN代理情况
   - type: mixed
     tag: 审计checker_无审计-in
     listen: 127.0.0.1
     listen_port: 1082
     sniff: true
+    domain_strategy: prefer_ipv6 #同上
 outbounds:
   - type: selector
     tag: select
