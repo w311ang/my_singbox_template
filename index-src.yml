@@ -14,7 +14,7 @@ dns:
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: 审计
-    - tag: cloudflare_OpenAI
+    - tag: cloudflare_AI
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: OpenAI
@@ -70,8 +70,10 @@ dns:
       server: local
     - rule_set: geosite-audit
       server: cloudflare_审计
-    - rule_set: geosite-openai
-      server: cloudflare_OpenAI
+    - rule_set:
+        - geosite-openai
+        - geosite-claude
+      server: cloudflare_AI
     - rule_set: Google
       server: cloudflare_Google
     - type: logical
@@ -172,7 +174,7 @@ outbounds:
       - Taiwan
     interrupt_exist_connections: true
   - type: selector
-    tag: OpenAI
+    tag: AI(OpenAI, Claude)
     outbounds:
       - select
       - Hong Kong
@@ -334,10 +336,12 @@ route:
             - ip_cidr: 0.0.0.0/0
               invert: true
           invert: true
-        - rule_set: geosite-openai
+        - rule_set:
+            - geosite-openai
+            - geosite-claude
           domain:
             - cdn.auth0.com
-      outbound: OpenAI
+      outbound: AI(OpenAI, Claude)
     - type: logical
       mode: and
       rules:
@@ -594,6 +598,11 @@ route:
       rules:
         - domain:
             - shared.oaifree.com
+    - type: remote
+      tag: geosite-claude
+      format: binary
+      url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-anthropic.srs
+      download_detour: auto
   auto_detect_interface: true
 experimental:
   cache_file:
