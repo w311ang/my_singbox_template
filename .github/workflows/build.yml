@@ -4,6 +4,7 @@ on:
     paths:
       - .github/workflows/build.yml
       - geosite-audit.yml
+      - geosite-audit_doh.yml
       - index-src.yml
   workflow_dispatch:
 
@@ -21,7 +22,7 @@ jobs:
         wget https://github.com/SagerNet/sing-box/releases/download/v1.10.0-alpha.22/sing-box_1.10.0-alpha.22_linux_amd64.deb
         sudo dpkg -i sing-box_1.10.0-alpha.22_linux_amd64.deb
         cd -
-        for filename in geosite-audit; do
+        for filename in geosite-audit geosite-audit_doh; do
           yq -o=json $filename.yml >$filename.json
           sing-box rule-set compile $filename.json
         done
