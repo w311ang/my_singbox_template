@@ -4,43 +4,43 @@ dns:
   servers:
     - tag: cloudflare
       address: tcp://1.1.1.1
-      strategy: prefer_ipv4 #已被mixed入站的domain_strategy覆盖
+      strategy: ipv4_only #已被mixed入站的domain_strategy覆盖，但是如果是tun-in则还是ipv4_only
       detour: select
     - tag: cloudflare_Global
       address: https://1.1.1.1/dns-query
-      strategy: prefer_ipv4
+      strategy: ipv4_only
       detour: select
     - tag: cloudflare_审计
       address: tcp://1.1.1.1
-      strategy: prefer_ipv4
+      strategy: ipv4_only
       detour: 审计
     - tag: cloudflare_OpenAI
       address: tcp://1.1.1.1
-      strategy: prefer_ipv4
+      strategy: ipv4_only
       detour: OpenAI
     - tag: cloudflare_Google
       address: tcp://1.1.1.1
-      strategy: prefer_ipv4
+      strategy: ipv4_only
       detour: Google
     - tag: cloudflare_TikTok
       address: tcp://1.1.1.1
-      strategy: prefer_ipv4
+      strategy: ipv4_only
       detour: TikTok
     - tag: cloudflare_YouTube
       address: tcp://1.1.1.1
-      strategy: prefer_ipv4
+      strategy: ipv4_only
       detour: YouTube
     - tag: cloudflare_Wikipedia
       address: tcp://1.1.1.1
-      strategy: prefer_ipv4
+      strategy: ipv4_only
       detour: Wikipedia
     - tag: cloudflare_巴哈姆特
       address: tcp://1.1.1.1
-      strategy: prefer_ipv4
+      strategy: ipv4_only
       detour: 巴哈姆特
     - tag: cloudflare_Amazon
       address: tcp://1.1.1.1
-      strategy: prefer_ipv4
+      strategy: ipv4_only
       detour: Amazon
     - tag: local
       address: udp://223.5.5.5 #最好是dhcp://auto
