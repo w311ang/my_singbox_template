@@ -4,7 +4,7 @@ dns:
   servers:
     - tag: cloudflare
       address: tcp://1.1.1.1
-      strategy: ipv4_only #已被mixed入站的domain_strategy覆盖
+      strategy: ipv4_only #已被mixed入站的domain_strategy覆盖，但是如果是tun-in则还是ipv4_only
       detour: select
     - tag: cloudflare_Global
       address: https://1.1.1.1/dns-query
@@ -92,7 +92,7 @@ dns:
       server: cloudflare_Amazon
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
-    - rule_set: 
+    - rule_set:
         - geosite-geolocation-cn
         - geoip-cn
       server: local
@@ -281,7 +281,7 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_version: 6
+        - ip_cidr: ::/0
           invert: true
         - rule_set: geosite-audit
       outbound: 审计
@@ -292,7 +292,7 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_version: 6
+        - ip_cidr: ::/0
           invert: true
         - rule_set: geosite-openai
           domain:
@@ -305,7 +305,7 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_version: 6
+        - ip_cidr: ::/0
           invert: true
         - rule_set: Google
       outbound: Google
@@ -316,7 +316,7 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_version: 6
+        - ip_cidr: ::/0
           invert: true
         - type: logical
           mode: or
@@ -331,7 +331,7 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_version: 6
+        - ip_cidr: ::/0
           invert: true
         - rule_set: geosite-youtube
       outbound: YouTube
@@ -342,7 +342,7 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_version: 6
+        - ip_cidr: ::/0
           invert: true
         - rule_set: geosite-wikimedia
       outbound: Wikipedia
@@ -353,7 +353,7 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_version: 6
+        - ip_cidr: ::/0
           invert: true
         - rule_set: geosite-bahamut
       outbound: 巴哈姆特
@@ -364,7 +364,7 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_version: 6
+        - ip_cidr: ::/0
           invert: true
         - type: logical
           mode: and
@@ -381,7 +381,7 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_version: 6
+        - ip_cidr: ::/0
           invert: true
         - rule_set:
             - geosite-geolocation-!cn
@@ -400,7 +400,7 @@ route:
       mode: or
       rules:
         - network: udp
-          port: 
+          port:
             - 443
             - 80
         - protocol: quic
