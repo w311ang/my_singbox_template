@@ -450,7 +450,7 @@ route:
             - 80
         - protocol: quic
       outbound: block
-    - type: logical
+    - type: logical #检测ipv6 only域名
       mode: and
       rules:
         - ip_cidr: ::/0
