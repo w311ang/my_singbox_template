@@ -7,7 +7,7 @@ dns:
       strategy: ipv4_only #已被mixed入站的domain_strategy覆盖，但是如果是tun-in则还是ipv4_only
       detour: select
     - tag: cloudflare_Global
-      address: tcp://1.1.1.1
+      address: tcp://1.1.1.1 #https://1.1.1.1/dns-query已被审计
       strategy: ipv4_only
       detour: select
     - tag: cloudflare_审计
