@@ -42,6 +42,10 @@ dns:
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: Amazon
+    - tag: cloudflare_LINUXDO
+      address: tcp://1.1.1.1
+      strategy: ipv4_only
+      detour: LINUX DO
     - tag: local
       address: udp://223.5.5.5 #最好是dhcp://auto
       detour: direct
@@ -90,6 +94,8 @@ dns:
             - cloudfront.net
           invert: true
       server: cloudflare_Amazon
+    - rule_set: geosite-linuxdo
+      server: cloudflare_LINUXDO
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
     - rule_set:
@@ -233,6 +239,14 @@ outbounds:
     interrupt_exist_connections: true
   - type: selector
     tag: Amazon
+    outbounds:
+      - select
+      - Hong Kong
+      - Singapore
+      - Taiwan
+    interrupt_exist_connections: true
+  - type: selector
+    tag: LINUX DO
     outbounds:
       - select
       - Hong Kong
@@ -444,6 +458,22 @@ route:
             - ip_cidr: 0.0.0.0/0
               invert: true
           invert: true
+        - rule_set: geosite-linuxdo
+      outbound: LINUX DO
+    - type: logical
+      mode: and
+      rules:
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
+          invert: true
         - rule_set:
             - geosite-geolocation-!cn
       outbound: select
@@ -556,6 +586,11 @@ route:
       download_detour: auto
     - type: inline
       tag: Bypass
+      rules:
+        - domain:
+            - placeholder.example.com
+    - type: inline
+      tag: geosite-linuxdo
       rules:
         - domain:
             - shared.oaifree.com
