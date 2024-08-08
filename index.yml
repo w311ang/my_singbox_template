@@ -290,6 +290,22 @@ route:
           invert: true
         - rule_set: geosite-audit
       outbound: 审计
+    - type: logical #针对DoH的审计。因dns ip都固定，无需dns规则还可以避免提前解析
+      mode: and
+      rules:
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
+          invert: true
+        - rule_set: geosite-audit_doh
+      outbound: 审计
     - type: logical
       mode: and
       rules:
@@ -522,6 +538,11 @@ route:
       tag: geosite-audit
       format: binary
       url: https://raw.githubusercontent.com/w311ang/my_singbox_template/main/geosite-audit.srs
+      download_detour: auto
+    - type: remote
+      tag: geosite-audit_doh
+      format: binary
+      url: https://raw.githubusercontent.com/w311ang/my_singbox_template/main/geosite-audit_doh.srs
       download_detour: auto
     - type: remote
       tag: geosite-bahamut
