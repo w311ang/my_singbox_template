@@ -281,7 +281,12 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_cidr: ::/0
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
           invert: true
         - rule_set: geosite-audit
       outbound: 审计
@@ -292,7 +297,12 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_cidr: ::/0
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
           invert: true
         - rule_set: geosite-openai
           domain:
@@ -305,7 +315,12 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_cidr: ::/0
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
           invert: true
         - rule_set: Google
       outbound: Google
@@ -316,7 +331,12 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_cidr: ::/0
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
           invert: true
         - type: logical
           mode: or
@@ -331,7 +351,12 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_cidr: ::/0
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
           invert: true
         - rule_set: geosite-youtube
       outbound: YouTube
@@ -342,7 +367,12 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_cidr: ::/0
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
           invert: true
         - rule_set: geosite-wikimedia
       outbound: Wikipedia
@@ -353,7 +383,12 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_cidr: ::/0
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
           invert: true
         - rule_set: geosite-bahamut
       outbound: 巴哈姆特
@@ -364,7 +399,12 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_cidr: ::/0
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
           invert: true
         - type: logical
           mode: and
@@ -381,7 +421,12 @@ route:
           invert: true
         - port: 22
           invert: true
-        - ip_cidr: ::/0
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
           invert: true
         - rule_set:
             - geosite-geolocation-!cn
@@ -405,7 +450,12 @@ route:
             - 80
         - protocol: quic
       outbound: block
-    - ip_cidr: ::/0
+    - type: logical
+      mode: and
+      rules:
+        - ip_cidr: ::/0
+        - ip_cidr: 0.0.0.0/0
+          invert: true
       outbound: IPv6
     - network: udp
       outbound: UDP
