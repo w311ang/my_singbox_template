@@ -17,7 +17,7 @@ dns:
     - tag: cloudflare_AI
       address: tcp://1.1.1.1
       strategy: ipv4_only
-      detour: OpenAI
+      detour: AI(OpenAI, Claude)
     - tag: cloudflare_Google
       address: tcp://1.1.1.1
       strategy: ipv4_only
