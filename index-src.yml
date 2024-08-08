@@ -405,7 +405,7 @@ route:
             - 80
         - protocol: quic
       outbound: block
-    - ip_version: 6
+    - ip_cidr: ::/0
       outbound: IPv6
     - network: udp
       outbound: UDP
