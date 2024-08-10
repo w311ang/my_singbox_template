@@ -4,7 +4,7 @@ dns:
   servers:
     - tag: cloudflare
       address: tcp://1.1.1.1
-      strategy: ipv4_only #已被mixed入站的domain_strategy覆盖，但是如果是tun-in则还是ipv4_only
+      strategy: ipv4_only #~~已被mixed入站的domain_strategy覆盖，但是如果是tun-in则还是ipv4_only~~ 已将mixed-in与tun-in请求分开缓存，详见https://github.com/w311ang/mysingboxconverter/blob/main/singboxconverter.py
       detour: select
     - tag: cloudflare_Global
       address: https://94.140.14.140/dns-query #https://1.1.1.1/dns-query已被审计，现使用未过滤adguard dns
