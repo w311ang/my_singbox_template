@@ -166,7 +166,7 @@ outbounds:
     outbounds:
       - direct
       - 审计
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -174,7 +174,7 @@ outbounds:
   - type: selector
     tag: 审计
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -182,7 +182,7 @@ outbounds:
   - type: selector
     tag: AI(OpenAI, Claude)
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -190,7 +190,7 @@ outbounds:
   - type: selector
     tag: Google
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -200,7 +200,7 @@ outbounds:
     outbounds:
       - direct
       - block
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -208,7 +208,7 @@ outbounds:
   - type: selector
     tag: UDP
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -216,7 +216,7 @@ outbounds:
   - type: selector
     tag: TikTok
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -224,7 +224,7 @@ outbounds:
   - type: selector
     tag: YouTube
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -232,7 +232,7 @@ outbounds:
   - type: selector
     tag: Wikipedia
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -240,7 +240,7 @@ outbounds:
   - type: selector
     tag: 巴哈姆特
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -248,7 +248,7 @@ outbounds:
   - type: selector
     tag: Amazon
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -256,7 +256,7 @@ outbounds:
   - type: selector
     tag: LINUX DO
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
@@ -264,7 +264,7 @@ outbounds:
   - type: selector
     tag: LINE
     outbounds:
-      - select
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
