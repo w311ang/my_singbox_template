@@ -283,6 +283,9 @@ outbounds:
     outbounds:
       - select
     interrupt_exist_connections: true
+  - type: urltest
+    tag: auto-Proxies
+    outbounds: []
   - type: direct
     tag: direct
   - type: block
