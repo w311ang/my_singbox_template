@@ -269,6 +269,7 @@ outbounds:
       - Singapore
       - Taiwan
     interrupt_exist_connections: true
+  - '新订阅select添加处'
   - type: urltest
     tag: Hong Kong
     outbounds-regex: .*香港.*
