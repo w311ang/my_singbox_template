@@ -282,6 +282,7 @@ outbounds:
     tag: Proxies
     outbounds:
       - select
+      - auto-Proxies
     interrupt_exist_connections: true
   - type: urltest
     tag: auto-Proxies
