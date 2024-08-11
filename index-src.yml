@@ -157,6 +157,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: urltest
     tag: auto
@@ -170,6 +171,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: 审计
@@ -178,6 +180,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: AI(OpenAI, Claude)
@@ -186,6 +189,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: Google
@@ -194,6 +198,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: IPv6
@@ -204,6 +209,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: UDP
@@ -212,6 +218,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: TikTok
@@ -220,6 +227,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: YouTube
@@ -228,6 +236,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: Wikipedia
@@ -236,6 +245,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: 巴哈姆特
@@ -244,6 +254,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: Amazon
@@ -252,6 +263,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: LINUX DO
@@ -260,6 +272,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - type: selector
     tag: LINE
@@ -268,6 +281,7 @@ outbounds:
       - Hong Kong
       - Singapore
       - Taiwan
+      - United States
     interrupt_exist_connections: true
   - '%%新订阅select添加处%%'
   - type: urltest
