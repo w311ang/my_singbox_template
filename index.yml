@@ -279,6 +279,9 @@ outbounds:
   - type: urltest
     tag: Taiwan
     outbounds-regex: .*台湾.*
+  - type: urltest
+    tag: United States
+    outbounds-regex: .*美国.*
   - type: selector
     tag: Proxies
     outbounds:
