@@ -5,34 +5,32 @@ rules:
     rules:
       - port:
           - 22
-      - domain_suffix:
-          - epochtimes.eu
-          - dajiyuan.com
-          - persianepochtimes.com
-          - epochtimes.com.ua
-          - minghui.com
-          - voachinese.com
-          - voachinese.net
-          - epochtimes.com.sg
-          - dongtaiwang.net
-          - epochtimes.net
-          - epochtimes.com.br
-          - secretchina.com
-          - zhengjian.org
-          - epochtimes.com.au
-          - epochtimes.com.tw
-          - theepochtimes.com
-          - falungong.club
-          - bannedbook.org
-          - falundafa.org
-          - soundofhope.org
-          - epochtimes.co.uk
-          - epochtimes.com
-          - ntdtv.com.tw
-          - dongtaiwang.org
-          - ntdtvla.com
-          - minghui.net
-          - falundafa.org.tw
+      - domain_keyword:
+          - secretchina
+          - rfi
+          - ntdtv
+          - falungong
+          - dajiyuan
+          - bannedbook
+          - falundafa
+          - epochtimes
+          - minghui
+          - persianepochtimes
+          - xinsheng
+          - zhengjian
+          - dongtaiwang
+          - zhuichaguoji
+          - epochweekly
+          - voachinese
+          - mhradio
+          - tuidang
+          - renminbao
+          - soundofhope
+          - theepochtimes
+          - ntdtvla
+          - aboluowang
+          - wujieliulan
+          - dafahao
           - ntdtv.org
           - renminbao.com
           - dafahao.com
