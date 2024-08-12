@@ -70,7 +70,7 @@ dns:
         - .lan
         - .local
       server: system
-    - query_type: SVCB
+    - query_type: 64 #SVCB
       server: rcode://refused
     - rule_set: Bypass
       server: local
