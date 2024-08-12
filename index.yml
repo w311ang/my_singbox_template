@@ -114,7 +114,7 @@ dns:
       server: local
     # 如果一个rule-set中包含ipcidr并且查询不到结果(包括该域名不存在aaaa或a记录)，就会不接受该dns服务器跳过这条规则继续匹配下面规则，无论rule_set_ip_cidr_accept_empty设置如何
     # 但是如果只要没有ipcidr，就算没有查询结果，仍然接受该dns服务器的响应
-    - rule_set: geoip-cn
+    - rule_set: geoip-cn #拆分开原因见上，使geosite-geolocation-cn始终信任
       server: local
     - clash_mode: Default
       server: cloudflare
