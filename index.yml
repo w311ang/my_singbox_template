@@ -332,8 +332,7 @@ route:
     - type: logical
       mode: and
       rules:
-        - package_name:
-            - placeholder
+        - package_name: '%allow_doh%[]'
           invert: true
         - rule_set: geosite-audit_doh #屏蔽DoH防止DNS泄漏导致访问IPv6
       outbound: block
