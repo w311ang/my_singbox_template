@@ -114,6 +114,7 @@ dns:
         - geosite-geolocation-cn
         - geoip-cn
       server: local
+    # 如果dns查询被以上server: local拒绝(包括该域名不存在aaaa记录)，那仍会继续尝试以下规则
     - clash_mode: Default
       server: cloudflare
   independent_cache: true #在tun-in和mixed-in dns请求分开缓存的情况下必须启用
@@ -360,7 +361,7 @@ route:
           invert: true
         - rule_set:
             - geosite-audit
-            - geosite-audit_doh #针对DoH的审计。因dns ip都固定，无需dns规则还可以避免提前解析
+            - geosite-audit_doh #针对DoH的审计。没有写dns规则是因为dns ip都固定，没有dns规则还可以避免提前解析为了以ip分流
       outbound: 审计
     - type: logical
       mode: and
