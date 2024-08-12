@@ -55,6 +55,8 @@ dns:
       detour: direct
     - tag: system
       address: local
+    - tag: block
+      address: rcode://refused
   rules:
     - outbound: any
       server: local
@@ -70,7 +72,7 @@ dns:
         - .lan
         - .local
       server: system
-    - query_type: 64 #SVCB
+    - query_type: SVCB
       server: rcode://refused
     - rule_set: Bypass
       server: local
