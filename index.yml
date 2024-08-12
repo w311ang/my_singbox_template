@@ -328,10 +328,9 @@ route:
         - protocol: dns
       outbound: dns-out
     - type: logical
-      mode: or
+      mode: and
       rules:
-        - port: 443 #屏蔽DoH防止DNS泄漏导致访问IPv6
-          rule_set: geosite-audit_doh
+        - rule_set: geosite-audit_doh #屏蔽DoH防止DNS泄漏导致访问IPv6
       outbound: block
     - port: 853 #屏蔽DoT
       outbound: block
@@ -355,23 +354,9 @@ route:
             - ip_cidr: 0.0.0.0/0
               invert: true
           invert: true
-        - rule_set: geosite-audit
-      outbound: 审计
-    - type: logical #针对DoH的审计。因dns ip都固定，无需dns规则还可以避免提前解析
-      mode: and
-      rules:
-        - network: udp
-          invert: true
-        - port: 22
-          invert: true
-        - type: logical
-          mode: and
-          rules:
-            - ip_cidr: ::/0
-            - ip_cidr: 0.0.0.0/0
-              invert: true
-          invert: true
-        - rule_set: geosite-audit_doh
+        - rule_set:
+            - geosite-audit
+            - geosite-audit_doh #针对DoH的审计。因dns ip都固定，无需dns规则还可以避免提前解析
       outbound: 审计
     - type: logical
       mode: and
