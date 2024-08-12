@@ -70,6 +70,8 @@ dns:
         - .lan
         - .local
       server: system
+    - query_type: SVCB
+      server: rcode://refused
     - rule_set: Bypass
       server: local
     - rule_set: geosite-audit
@@ -325,6 +327,14 @@ route:
         - port: 53
         - protocol: dns
       outbound: dns-out
+    - type: logical
+      mode: or
+      rules:
+        - port: 443 #屏蔽DoH防止DNS泄漏导致访问IPv6
+          rule-set: geosite-audit_doh
+      outbound: block
+    - port: 853 #屏蔽DoT
+      outbound: block
     - clash_mode: Global
       outbound: Proxies
     - ip_is_private: true
