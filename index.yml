@@ -73,7 +73,7 @@ dns:
         - .local
       server: system
     - query_type: SVCB
-      server: rcode://refused
+      server: block
     - rule_set: Bypass
       server: local
     - rule_set: geosite-audit
