@@ -114,7 +114,7 @@ dns:
         - geosite-geolocation-cn
         - geoip-cn
       server: local
-    - clash_mode: Default
+    - clash_mode: Rule
       server: cloudflare
   independent_cache: true #在tun-in和mixed-in dns请求分开缓存的情况下必须启用
   reverse_mapping: true #解决只靠嗅探udp嗅探不出域名而只用ip分流的问题
@@ -567,7 +567,7 @@ route:
       outbound: UDP
     - port: 22
       outbound: Port22SSH
-    - clash_mode: Default
+    - clash_mode: Rule
       outbound: Proxies
     - process_name: #用以启用在ui中显示进程
         - placeholder
@@ -672,4 +672,4 @@ experimental:
   clash_api:
     external_controller: 127.0.0.1:9090
     external_ui: dashboard
-    default_mode: Default
+    default_mode: Rule
