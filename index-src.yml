@@ -166,6 +166,7 @@ outbounds:
   - type: urltest
     tag: auto
     outbounds: []
+    interval: 1d
   - type: selector
     tag: Port22SSH
     outbounds:
