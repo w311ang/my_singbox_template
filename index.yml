@@ -167,6 +167,7 @@ outbounds:
     tag: auto
     outbounds: []
     interval: 1d
+    idle_timeout: 1d
   - type: selector
     tag: Port22SSH
     outbounds:
