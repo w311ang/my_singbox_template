@@ -291,6 +291,12 @@ outbounds:
       - United States
     interrupt_exist_connections: true
   - '%%新订阅select添加处%%'
+  - type: selector
+    tag: Proxies
+    outbounds:
+      - select
+      - auto-Proxies
+    interrupt_exist_connections: true
   - type: selector #urltest性能消耗大
     tag: Hong Kong
     outbounds-regex: .*香港.*
@@ -306,12 +312,6 @@ outbounds:
   - type: selector
     tag: United States
     outbounds-regex: .*美国.*
-    interrupt_exist_connections: true
-  - type: selector
-    tag: Proxies
-    outbounds:
-      - select
-      - auto-Proxies
     interrupt_exist_connections: true
   - type: urltest
     tag: auto-Proxies
