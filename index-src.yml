@@ -187,8 +187,8 @@ outbounds:
   - type: selector
     tag: FCM
     outbounds:
-      - Proxies
       - direct
+      - Proxies
       - Hong Kong
       - Singapore
       - Taiwan
