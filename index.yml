@@ -50,6 +50,9 @@ dns:
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: LINE
+    - tag: cloudflare_FCM
+      address: tcp://1.1.1.1
+      detour: FCM
     - tag: local
       address: udp://223.5.5.5 #最好是dhcp://auto
       detour: direct
@@ -76,6 +79,8 @@ dns:
       server: block
     - rule_set: Bypass
       server: local
+    - domain: mtalk.google.com
+      server: cloudflare_FCM
     - rule_set: geosite-audit
       server: cloudflare_审计
     - rule_set:
@@ -174,6 +179,16 @@ outbounds:
       - direct
       - 审计
       - Proxies
+      - Hong Kong
+      - Singapore
+      - Taiwan
+      - United States
+    interrupt_exist_connections: true
+  - type: selector
+    tag: FCM
+    outbounds:
+      - Proxies
+      - direct
       - Hong Kong
       - Singapore
       - Taiwan
@@ -353,6 +368,8 @@ route:
       outbound: direct
     - rule_set: Bypass
       outbound: direct
+    - domain: mtalk.google.com
+      outbound: FCM
     - type: logical
       mode: and
       rules:
