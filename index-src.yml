@@ -183,6 +183,7 @@ outbounds:
     tag: 审计
     outbounds:
       - Proxies
+      - direct
       - Hong Kong
       - Singapore
       - Taiwan
