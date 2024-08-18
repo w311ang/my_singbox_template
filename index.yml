@@ -76,6 +76,8 @@ dns:
       server: block
     - rule_set: Bypass
       server: local
+    - rule_set: Proxy
+      server: cloudflare
     - rule_set: geosite-audit
       server: cloudflare_审计
     - rule_set:
@@ -353,6 +355,23 @@ route:
       outbound: direct
     - rule_set: Bypass
       outbound: direct
+    - type: logical
+      mode: and
+      rules:
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
+          invert: true
+        - rule_set:
+            - Proxy
+      outbound: Proxies
     - type: logical
       mode: and
       rules:
@@ -658,6 +677,11 @@ route:
       rules:
         - domain:
             - placeholder.example.com
+    - type: inline
+      tag: Proxy
+      rules:
+        - domain:
+            - m.tb.cn
     - type: inline
       tag: geosite-linuxdo
       rules:
