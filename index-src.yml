@@ -78,7 +78,14 @@ dns:
       server: local
     - rule_set: Proxy
       server: cloudflare
-    - rule_set: geosite-audit
+    - type: logical
+      mode: and
+      rules:
+        - rule_set: 
+            - geosite-audit
+            - geosite-audit_doh #针对DoH的审计。因dns ip都固定，无需dns规则还可以避免提前解析
+        - rule_set: geosite-geolocation-cn
+          invert: true
       server: cloudflare_审计
     - rule_set:
         - geosite-openai
@@ -386,9 +393,14 @@ route:
             - ip_cidr: 0.0.0.0/0
               invert: true
           invert: true
-        - rule_set: 
-            - geosite-audit
-            - geosite-audit_doh #针对DoH的审计。因dns ip都固定，无需dns规则还可以避免提前解析
+        - type: logical
+          mode: and
+          rules:
+            - rule_set: 
+                - geosite-audit
+                - geosite-audit_doh #针对DoH的审计。因dns ip都固定，无需dns规则还可以避免提前解析
+            - rule_set: geosite-geolocation-cn
+              invert: true
       outbound: 审计
     - type: logical
       mode: and
