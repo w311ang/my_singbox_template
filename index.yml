@@ -81,9 +81,7 @@ dns:
     - type: logical
       mode: and
       rules:
-        - rule_set:
-            - geosite-audit
-            - geosite-audit_doh #针对DoH的审计。因dns ip都固定，无需dns规则还可以避免提前解析
+        - rule_set: geosite-audit
         - rule_set: geosite-geolocation-cn
           invert: true
       server: cloudflare_审计
