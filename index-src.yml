@@ -681,7 +681,7 @@ route:
       tag: Proxy
       rules:
         - domain:
-            - m.tb.cn
+            - placeholder.example.com
     - type: inline
       tag: geosite-linuxdo
       rules:
