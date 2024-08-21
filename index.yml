@@ -131,7 +131,7 @@ inbounds:
     listen: 127.0.0.1
     listen_port: 1080
     sniff: true
-    domain_strategy: prefer_ipv4 #避免不解析域名直接通过域名分流，导致geoip规则失效。实际dns解析还是按照dns解析规则但strategy已被覆盖成prefer_ipv4，也是为什么不用prefer_ipv6原因
+    domain_strategy: ipv4_only #避免不解析域名直接通过域名分流，导致geoip规则失效。实际dns解析还是按照dns解析规则但strategy已被覆盖成prefer_ipv4，也是为什么不用prefer_ipv6原因
   - type: tun
     tag: tun-in
     address:
@@ -153,13 +153,13 @@ inbounds:
     listen: 127.0.0.1
     listen_port: 1081
     sniff: true
-    domain_strategy: prefer_ipv4 #仅仅只是为了将域名解析为IP发送给上游节点，模拟TUN代理情况
+    domain_strategy: ipv4_only #仅仅只是为了将域名解析为IP发送给上游节点，模拟TUN代理情况
   - type: mixed
     tag: 审计checker_无审计-in
     listen: 127.0.0.1
     listen_port: 1082
     sniff: true
-    domain_strategy: prefer_ipv4 #同上
+    domain_strategy: ipv4_only #同上
 outbounds:
   - type: selector
     tag: select
