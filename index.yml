@@ -762,7 +762,7 @@ route:
       tag: Bypass
       rules:
         - domain:
-            - placeholder.example.com
+            - www.pc528.net
     - type: inline
       tag: Proxy
       rules:
