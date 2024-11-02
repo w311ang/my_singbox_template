@@ -766,8 +766,8 @@ route:
     - type: inline
       tag: Proxy
       rules:
-        - domain:
-            - placeholder.example.com
+        - domain_suffix:
+            - taptap.io
     - type: inline
       tag: geosite-linuxdo
       rules:
