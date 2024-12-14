@@ -360,6 +360,16 @@ outbounds:
       - Taiwan
       - United States
     interrupt_exist_connections: true
+  - type: selector
+    tag: Epic Games
+    outbounds:
+      - Proxies
+      - direct
+      - Hong Kong
+      - Singapore
+      - Taiwan
+      - United States
+    interrupt_exist_connections: true
   - '%%新订阅select添加处%%'
   - type: selector
     tag: Proxies
