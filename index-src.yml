@@ -50,6 +50,10 @@ dns:
       address: tcp://1.1.1.1
       strategy: ipv4_only
       detour: LINE
+    - tag: cloudflare_EpicGames
+      address: tcp://1.1.1.1
+      strategy: ipv4_only
+      detour: Epic Games
     - tag: local
       address: udp://223.5.5.5 #最好是dhcp://auto
       detour: direct
@@ -161,6 +165,13 @@ dns:
           invert: true
         - rule_set: geosite-line
       server: cloudflare_LINE
+    - type: logical
+      mode: and
+      rules:
+        - clash_mode: Nonrule
+          invert: true
+        - rule_set: geosite-epicgames
+      server: cloudflare_EpicGames
     - rule_set: geosite-geolocation-!cn
       server: cloudflare
     - rule_set:
@@ -646,6 +657,24 @@ route:
             - ip_cidr: 0.0.0.0/0
               invert: true
           invert: true
+        - rule_set: geosite-epicgames
+      outbound: Epic Games
+    - type: logical
+      mode: and
+      rules:
+        - clash_mode: Nonrule
+          invert: true
+        - network: udp
+          invert: true
+        - port: 22
+          invert: true
+        - type: logical
+          mode: and
+          rules:
+            - ip_cidr: ::/0
+            - ip_cidr: 0.0.0.0/0
+              invert: true
+          invert: true
         - rule_set:
             - geosite-geolocation-!cn
       outbound: Proxies
@@ -784,6 +813,11 @@ route:
       tag: geosite-line
       format: binary
       url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-line.srs
+      download_detour: auto
+    - type: remote
+      tag: geosite-epicgames
+      format: binary
+      url: https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-epicgames.srs
       download_detour: auto
   auto_detect_interface: true
 experimental:
