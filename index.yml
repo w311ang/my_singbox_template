@@ -95,7 +95,7 @@ dns:
         - rule_set:
             - geosite-openai
             - geosite-claude
-        - domain:
+          domain:
             - cdn.auth0.com
       server: cloudflare_AI
     - type: logical
