@@ -3,9 +3,7 @@ on:
   push:
     paths:
       - .github/workflows/build.yml
-      - geosite-audit.yml
-      - geosite-audit_doh.yml
-      - index-src.yml
+      - "*.yml"
   workflow_dispatch:
 
 jobs:
@@ -22,9 +20,11 @@ jobs:
         wget https://github.com/SagerNet/sing-box/releases/download/v1.10.0-alpha.22/sing-box_1.10.0-alpha.22_linux_amd64.deb
         sudo dpkg -i sing-box_1.10.0-alpha.22_linux_amd64.deb
         cd -
-        for filename in geosite-audit geosite-audit_doh; do
-          yq -o=json $filename.yml >$filename.json
-          sing-box rule-set compile $filename.json
+        for file in *.yml; do
+          json_file="${file%.yml}.json"
+          yq -o=json "$file" >"$json_file"
+          sing-box rule-set compile "$json_file"
+          rm "$json_file"
         done
         yq eval-all '. as $item ireduce ({}; . *+ $item )' index-src.yml inbounds-tun.yml >index.yml
     - name: Commit files
