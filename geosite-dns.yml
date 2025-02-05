@@ -4,3 +4,4 @@ rules:
       - mozilla.cloudflare-dns.com
       - dns.cloudflare.com
       - dns.google.com
+      - dns.alidns.com
