@@ -1,0 +1,6 @@
+version: 2
+rules:
+  - domain:
+      - mozilla.cloudflare-dns.com
+      - dns.cloudflare.com
+      - dns.google.com
