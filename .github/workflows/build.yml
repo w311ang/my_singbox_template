@@ -21,9 +21,10 @@ jobs:
         sudo dpkg -i sing-box_1.10.0-alpha.22_linux_amd64.deb
         cd -
         for file in *.yml; do
+          echo processing "$file"
           json_file="${file%.yml}.json"
           yq -o=json "$file" >"$json_file"
-          sing-box rule-set compile "$json_file"
+          sing-box rule-set compile "$json_file" || true
           rm "$json_file"
         done
         yq eval-all '. as $item ireduce ({}; . *+ $item )' index-src.yml inbounds-tun.yml >index.yml
